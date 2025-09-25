@@ -26,7 +26,12 @@ const Page = () => {
   const [locations, setLocations] = useState<string[]>([]);
   const [activities, setActivities] = useState<string[]>([]);
   const [priceBounds, setPriceBounds] = useState<{ min: number; max: number }>({ min: 0, max: 0 });
-  const [filters, setFilters] = useState<Filters>({ location: "All Areas", activity: "All Activities", priceMin: 0, priceMax: 0 });
+  const [filters, setFilters] = useState<Filters>({
+    location: "All Areas",
+    activity: "All Activities",
+    priceMin: 0,
+    priceMax: 0,
+  });
 
   useEffect(() => {
     setHasMounted(true);
@@ -46,7 +51,12 @@ const Page = () => {
         const min = prices.length ? Math.min(...prices) : 0;
         const max = prices.length ? Math.max(...prices) : 0;
         setPriceBounds({ min, max });
-        setFilters({ location: "All Areas", activity: "All Activities", priceMin: min, priceMax: max });
+        setFilters({
+          location: "All Areas",
+          activity: "All Activities",
+          priceMin: min,
+          priceMax: max,
+        });
       } catch (e) {
         // Fallback if fetch fails
         setCategories([
@@ -66,14 +76,16 @@ const Page = () => {
   }, []);
 
   const filtered = useMemo(() => {
-    const byCategory = active === "All Spaces" ? spaces : spaces.filter((s) => s.categories.includes(active));
-    return byCategory
-      .filter((s) => {
-        const withinPrice = s.pricePerHour >= filters.priceMin && s.pricePerHour <= filters.priceMax;
-        const matchesLocation = filters.location === "All Areas" ? true : s.location === filters.location;
-        const matchesActivity = filters.activity === "All Activities" ? true : s.activities.includes(filters.activity);
-        return withinPrice && matchesLocation && matchesActivity;
-      });
+    const byCategory =
+      active === "All Spaces" ? spaces : spaces.filter((s) => s.categories.includes(active));
+    return byCategory.filter((s) => {
+      const withinPrice = s.pricePerHour >= filters.priceMin && s.pricePerHour <= filters.priceMax;
+      const matchesLocation =
+        filters.location === "All Areas" ? true : s.location === filters.location;
+      const matchesActivity =
+        filters.activity === "All Activities" ? true : s.activities.includes(filters.activity);
+      return withinPrice && matchesLocation && matchesActivity;
+    });
   }, [active, spaces, filters]);
 
   useEffect(() => {

@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useRef, useEffect, FC } from "react";
+import React, { useState, useRef, useEffect, FC, useCallback } from "react";
 import Link from "next/link";
 
 function useHideOnScroll() {
@@ -40,9 +40,38 @@ const navLinks = [
 const Navbar: FC = () => {
   const hidden = useHideOnScroll();
   const [open, setOpen] = useState(false);
+  const navRef = useRef<HTMLDivElement>(null);
+
+  // Handler to close mobile nav on any click outside the nav (for small screens)
+  const handleGlobalClick = useCallback(
+    (e: MouseEvent) => {
+      // Only close if open and on mobile (xl:hidden)
+      if (!open) return;
+      // If click is inside the nav, do nothing
+      if (navRef.current && navRef.current.contains(e.target as Node)) return;
+      setOpen(false);
+    },
+    [open]
+  );
+
+  useEffect(() => {
+    if (open) {
+      // Only add listener if open and on mobile
+      // Check if window width is less than xl (1280px)
+      const isMobile = window.innerWidth < 1280;
+      if (isMobile) {
+        document.addEventListener("mousedown", handleGlobalClick);
+        // document.addEventListener("touchstart", handleGlobalClick);
+      }
+      return () => {
+        document.removeEventListener("mousedown", handleGlobalClick);
+      };
+    }
+  }, [open, handleGlobalClick]);
 
   return (
     <div
+      ref={navRef}
       className={
         "fixed top-0 inset-x-0 z-50 transform-gpu will-change-transform transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] " +
         (hidden ? "-translate-y-full" : "translate-y-0")
