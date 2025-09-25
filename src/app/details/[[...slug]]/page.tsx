@@ -6,6 +6,7 @@ import { StarIcon, MapPinIcon, HeartIcon, ClockIcon, UserIcon } from "@heroicons
 import { HeartIcon as HeartSolidIcon, CheckCircleIcon } from "@heroicons/react/24/solid";
 import data from "../../../../public/data/spaces.json";
 import Link from "next/link";
+import Footer from "@/app/Home/components/footer";
 
 const DetailsPage: React.FC = () => {
   const params = useParams() as { slug?: string | string[] };
@@ -451,6 +452,7 @@ const DetailsPage: React.FC = () => {
           </div>
         </div>
       </div>
+      <Footer/>
     </main>
   );
 };

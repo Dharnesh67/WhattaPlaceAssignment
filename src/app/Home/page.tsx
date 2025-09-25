@@ -6,6 +6,7 @@ import CategoryTabs, { SpaceCategory } from "./components/CategoryTabs";
 import SpaceGrid from "./components/SpaceGrid";
 import FiltersBar, { type Filters } from "./components/FiltersBar";
 import type { Space } from "./components/SpaceCard";
+import Footer from "./components/footer";
 
 import { useState, useEffect, useMemo } from "react";
 
@@ -146,6 +147,7 @@ const Page = () => {
         onChange={setFilters}
       />
       <SpaceGrid spaces={filtered} />
+      <Footer />
     </div>
   );
 };

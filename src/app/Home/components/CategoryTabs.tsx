@@ -41,14 +41,14 @@ const CategoryTabs: FC<Props> = ({ categories, active, onChange }) => {
       aria-label="Category Tabs"
     >
       {/* Tabs Container */}
-      <div className="relative  scrollbar-thin scrollbar-thumb-purple-300 scrollbar-track-purple-100">
+      <div className="relative scrollbar-thin scrollbar-thumb-[#142ea7]/40 scrollbar-track-[#142ea7]/10">
         {/* Scroll Shadows */}
-        <div className="absolute left-0 top-0 bottom-0 w-6 bg-gradient-to-r from-purple-50 to-transparent z-10 pointer-events-none" />
-        <div className="absolute right-0 top-0 bottom-0 w-6 bg-gradient-to-l from-purple-50 to-transparent z-10 pointer-events-none" />
+        <div className="absolute left-0 top-0 bottom-0 w-6 z-10 pointer-events-none" />
+        <div className="absolute right-0 top-0 bottom-0 w-6 z-10 pointer-events-none" />
 
         <div
           ref={containerRef}
-          className="relative flex  overflow-x-auto scroll-smooth py-3 gap-2 sm:gap-3 scrollbar-thin px-10 scrollbar-thumb-purple-300 scrollbar-track-purple-100"
+          className="relative flex overflow-x-auto scroll-smooth py-3 gap-2 sm:gap-3 scrollbar-thin px-10 scrollbar-thumb-[#142ea7]/40 scrollbar-track-[#142ea7]/10"
           tabIndex={0}
           role="tablist"
         >
@@ -64,11 +64,11 @@ const CategoryTabs: FC<Props> = ({ categories, active, onChange }) => {
                 tabIndex={isActive ? 0 : -1}
                 className={[
                   "cursor-pointer flex-shrink-0 whitespace-nowrap rounded-full border-2 px-4 py-2.5 sm:px-5 sm:py-3 text-sm sm:text-base font-semibold transition-all duration-300",
-                  "focus:outline-none focus:ring-3 focus:ring-purple-300 focus:ring-opacity-50",
+                  "focus:outline-none focus:ring-3 focus:ring-[#142ea7] focus:ring-opacity-50",
                   "transform hover:scale-105 active:scale-95",
                   isActive
-                    ? "bg-purple-600 text-white border-purple-600 shadow-lg shadow-purple-200"
-                    : "bg-white text-purple-700 border-purple-200 hover:bg-purple-50 hover:border-purple-300 hover:text-purple-800",
+                    ? "bg-[#142ea7] text-white border-[#142ea7] shadow-lg shadow-[#142ea7]/20"
+                    : "bg-white text-[#142ea7] border-[#142ea7]/20 hover:bg-[#142ea7]/10 hover:border-[#142ea7]/40 hover:text-[#142ea7]",
                 ].join(" ")}
               >
                 {cat}

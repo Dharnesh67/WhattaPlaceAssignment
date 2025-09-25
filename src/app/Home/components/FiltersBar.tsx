@@ -46,7 +46,7 @@ const FiltersBar: FC<Props> = ({
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {/* Location */}
             <label className="flex flex-col gap-1">
-              <span className="text-xs font-semibold text-purple-700">Location</span>
+              <span className="text-xs font-semibold text-[#142ea7]">Location</span>
               <select
                 className="rounded-xl border-2 border-purple-200 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-purple-300"
                 value={value.location}
@@ -61,7 +61,7 @@ const FiltersBar: FC<Props> = ({
             </label>
             {/* Price Min */}
             <label className="flex flex-col gap-1">
-              <span className="text-xs font-semibold text-purple-700">Min price (₹/hr)</span>
+              <span className="text-xs font-semibold text-[#142ea7]">Min price (₹/hr)</span>
               <input
                 type="number"
                 min={minPrice}
@@ -77,7 +77,7 @@ const FiltersBar: FC<Props> = ({
 
             {/* Price Max */}
             <label className="flex flex-col gap-1">
-              <span className="text-xs font-semibold text-purple-700">Max price (₹/hr)</span>
+              <span className="text-xs font-semibold text-[#142ea7]">Max price (₹/hr)</span>
               <input
                 type="number"
                 min={value.priceMin}
@@ -94,7 +94,7 @@ const FiltersBar: FC<Props> = ({
           <div className="flex justify-end mt-2">
             <button
               type="button"
-              className="px-4 py-2 rounded-lg bg-purple-100 text-purple-700 font-semibold border border-purple-200 hover:bg-purple-200 transition"
+              className="px-4 py-2 rounded-lg bg-purple-100 text-[#142ea7] font-semibold border border-purple-200 hover:bg-purple-200 transition"
               onClick={handleClear}
             >
               Clear Filters
